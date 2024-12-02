@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kode Bucin</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      overflow: hidden;
+    }
+    .card {
+      text-align: center;
+      background: white;
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      transform: scale(1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      width: 90%;
+      max-width: 400px;
+    }
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 30px rgba(0, 0, 0, 0.3);
+    }
+    .card h1 {
+      margin: 0;
+      font-size: 1.8rem;
+      color: #ff6b6b;
+    }
+    .card p {
+      font-size: 1rem;
+      color: #333;
+      margin: 10px 0;
+    }
+    .input-container {
+      margin: 20px 0;
+    }
+    .input-container input {
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      width: calc(100% - 20px);
+      font-size: 1rem;
+    }
+    .button-container {
+      margin-top: 20px;
+    }
+    .button {
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+      color: white;
+      transition: background 0.3s ease;
+    }
+    .button.submit {
+      background: #007bff;
+    }
+    .button.submit:hover {
+      background: #0056b3;
+    }
+    .button.yes {
+      background: #28a745;
+    }
+    .button.yes:hover {
+      background: #218838;
+    }
+    .button.no {
+      background: #dc3545;
+      margin-left: 10px;
+    }
+    .button.no:hover {
+      background: #c82333;
+    }
+  </style>
+</head>
+<body>
+  <div class="card" id="nameStep">
+    <h1>Masukkan Nama Kamu 😊</h1>
+    <div class="input-container">
+      <input type="text" id="userName" placeholder="Nama kamu...">
+    </div>
+    <div class="button-container">
+      <button class="button submit" onclick="submitName()">Lanjut</button>
+    </div>
+  </div>
+
+  <div class="card" id="choiceStep" style="display: none;">
+    <h1>Hai <span id="displayName">Kamu</span>! 😊</h1>
+    <p>Jadi, mau nggak kamu jadi pacarku? Aku janji bakal bikin kamu bahagia selalu ❤️</p>
+    <div class="button-container">
+      <button class="button yes" onclick="sayYes()">Mau</button>
+      <button class="button no" onclick="sayNo()">Tidak</button>
+    </div>
+  </div>
+
+  <script>
+    function submitName() {
+      const nameInput = document.getElementById('userName').value.trim();
+      if (nameInput === "") {
+        alert("Nama tidak boleh kosong!");
+        return;
+      }
+      document.getElementById('displayName').innerText = nameInput;
+      document.getElementById('nameStep').style.display = 'none';
+      document.getElementById('choiceStep').style.display = 'block';
+    }
+
+    function sayYes() {
+      const name = document.getElementById('displayName').innerText;
+      const url = `https://wa.me/qr/3MO7OTNACPRJB1?text=Halo...%20nama%20saya%20${encodeURIComponent(name)},%20Saya%20mau%20kok%20jadi%20pacarmu,%20kamu%20baik,%20kamu%20spesial%20di%20mataku,%20hihihi,%20mulai%20sekarang%20kita%20pacaran%20ya%20😊❤️❤️`;
+      window.open(url, '_blank');
+    }
+
+    function sayNo() {
+      alert("Yah, nggak apa-apa kok. Aku tetap menghargai keputusanmu! 😊");
+      window.close();
+    }
+  </script>
+</body>
+</html>
